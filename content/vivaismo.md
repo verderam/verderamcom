@@ -35,7 +35,7 @@ items:
     preview_img: evonymus.jpg
     url: '#'    
   - title: Aspidirstria
-    preview_img: aspidistria.jpg
+    preview_img: aspidistra.jpg
     url: '#'    
   - title: Plumbago
     preview_img: plumbago.jpg

@@ -2,7 +2,7 @@
 title: Contatti
 subtitle: >-
   Come contattarci, dove trovarci e come raggiungerci. <br />
-  <a style="font-size:.8rem;font-weight:80;color:gold" href="https://www.iperiusremote.it/" target="_blank" >♜ Assistenza remota ♜</a>
+  <a style="font-size:.8rem;font-weight:80;color:gold" href="https://www.dwservice.net/" target="_blank" >♜ Assistenza remota ♜</a>
 img_path: /images/openmap.jpg
 cit:
   text: >- 

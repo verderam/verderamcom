@@ -45,7 +45,7 @@ params:
 #    - identifier: help
 #      weight: 999
 #      name: Help 🔗
-#      url: 'https://www.iperiusremote.it/'
+#      url: 'https://www.dwservice.net/'
 #      target: _blank
 #      parent: informatica
 disableKinds:
