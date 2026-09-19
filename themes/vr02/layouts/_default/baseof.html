@@ -20,7 +20,7 @@
     </head>
     <body>
         {{ block "body" .}}
-        <div id="page" class="site {{ if .Title }}{{ .Name |lower }}{{ end }}">
+        <div id="page" class="site {{ if .Title }}{{ .Name | anchorize }}{{ end }}">
           {{ partial "header.html" . }}
           <main id="content" class="main">
             {{ block "content" . }}{{ end }}
@@ -30,10 +30,6 @@
         </div><!-- .site -->
         {{ end }} <!--  end block body -->
         <script data-no-instant src="{{ "assets/js/lazyload.min.js" | relURL }}"></script>
-        <script data-no-instant=""> 
-            LazyLoad.js('{{ "assets/js/instantclick.min.js" | relURL }}', function () {
-                InstantClick.init();
-            });
-        </script>
+        <script data-no-instant src="{{ "assets/js/init.js" | relURL }}"></script>
     </body> 
 </html>

@@ -2,7 +2,7 @@
 <section class="pg">
     {{ partial "pg_header.html" .}}
 
-<div class="inner flex wrap showcase {{$.Name|lower}}">
+<div class="inner flex wrap showcase {{ $.Name | anchorize }}">
     {{ range $item := .Params.items }}
     <section class="ac {{ $item.id }}">
         <article class="card">
