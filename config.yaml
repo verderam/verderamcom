@@ -1,0 +1,62 @@
+title: 'Agricoltura, vivaismo ed informatica'
+baseURL: /
+LanguageCode: "it_IT"
+defaultContentLanguage: "it"
+defaultContentLangageInSubdir: false
+theme: "vr02"
+languages:
+ it:
+  lang: "it"
+  languageName: "Italiano"
+  weight: 1
+ en:
+  lang: "en"
+  languageName: "English"
+  weight: 2 
+# fr:
+#  lang: "fr"
+#  languageName: "Français"
+#  weight: 3
+params:
+  palette: verderam01
+  palettes:
+    blue:
+      sass:
+        accent1: '#00c6ff'
+        accent2: '#0072ff'
+    green:
+      sass:
+        accent1: '#12db5d'
+        accent2: '#11998e'
+    verderam01:
+      sass:
+        accent1: '#006633'
+        accent2: '#4CA22F'
+    navy:
+      sass:
+        accent1: '#004e92'
+        accent2: '#000428'
+    violet:
+      sass:
+        accent1: '#8e2de2'
+        accent2: '#4a00e0'
+#menu:
+#  main:
+#    - identifier: help
+#      weight: 999
+#      name: Help 🔗
+#      url: 'https://www.iperiusremote.it/'
+#      target: _blank
+#      parent: informatica
+disableKinds:
+  - RSS
+  - robotsTXT
+  - "404"
+enableEmoji: true
+pluralizeListTitles: false
+paginate: 20
+verbose: true
+imaging:
+  resampleFilter: 'box'
+  quality: 95
+  anchor: 'smart'

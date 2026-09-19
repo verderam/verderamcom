@@ -1,0 +1,4 @@
+{{ $href := (printf "%s" (.Get "href"))}}
+{{ $title := (printf "%s" (.Get "title"))}}
+{{ $text := (printf "%s" (.Get "text"))}}
+<a href="{{ $href }}" title="{{ $title }}" target="_blank">{{ $text }}</a>

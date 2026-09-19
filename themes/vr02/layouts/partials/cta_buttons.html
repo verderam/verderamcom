@@ -1,0 +1,5 @@
+<p class="action ar">
+  {{ range $action := .actions }}
+  <a href="{{ $action.url | relURL }}" class="btn rnd">{{ $action.label }} </a>
+  {{ end }}
+</p>

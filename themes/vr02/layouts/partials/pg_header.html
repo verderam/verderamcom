@@ -1,0 +1,10 @@
+<header class="hdr bg" style=" {{ if .Params.img_path }} background-image:  linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.55)), url('{{ .Params.img_path | relURL }}') {{ end }}">
+    <div class="inner tsh">
+        <h1 class="article ac">{{ .Params.title }}</h1>
+        {{ if .Params.subtitle }}
+        <h2 class="ac subt">
+        {{ .Params.subtitle | safeHTML }}
+        </h2>
+        {{ end }}
+    </div>
+</header>

@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+    <head>    
+        <title>{{ if .Title }}{{ .Title }} - {{ end }}{{ .Site.Title }}</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="google" content="notranslate" />
+        <!-- <link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i%26display=swap" rel="stylesheet"> -->
+        <link rel="stylesheet" href="{{ (resources.Get "sass/main.scss" | resources.ExecuteAsTemplate "assets/css/main.css" . | resources.ToCSS (dict "indentWidth" 4 "outputStyle" "nested" "precision" 10)).Permalink }}">
+        <link rel="stylesheet" href="/assets/css/custom.css" />
+        <!--[if IE]>
+          <link rel="stylesheet" href="/assets/css/ie.css" />
+        <![endif]-->
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+        <!--  translations -->
+        {{ if .IsTranslated }}
+          {{ range .Translations }}
+            <link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}" title="{{ .Language.LanguageName }}" />
+          {{ end }}
+        {{ end }}
+    </head>
+    <body>
+        {{ block "body" .}}
+        <div id="page" class="site">
+          {{ partial "header.html" . }}
+          <main id="content" class="site-content">
+            {{ block "content" . }}{{ end }}
+            {{ block "c2" . }}{{ end }}
+          </main><!-- .site-content -->
+          {{ partial "footer.html" . }}
+        </div><!-- .site -->
+        <!-- Scripts 
+        <script data-no-instant src="{{ "assets/js/instantclick.min.js" | relURL }}" data-manual></script>        
+        <script data-no-instant src="{{ "assets/js/plugins.js" | relURL }}"></script>
+        <script data-no-instant src="{{ "assets/js/prism.js" | relURL }}" data-manual></script>
+        <script data-no-instant src="{{ "assets/js/main.js" | relURL }}"></script>-->
+        <script data-no-instant src="{{ "assets/js/lazyload.min.js" | relURL }}"></script>
+        <script data-no-instant=""> 
+            LazyLoad.js('{{ "assets/js/instantclick.min.js" | relURL }}', function () {
+                //InstantClick.init();
+            });
+        </script>
+        {{ end }}
+    </body> 
+</html>

@@ -1,0 +1,22 @@
+<ul class="{{ .menu_class }}">
+  {{ range $item := .menu }}
+  <li class="menu-item{{ if gt ($item.Children | len) 0 }} has-children{{ end }}{{ if eq $.page.Permalink $item.URL }} current{{ end }}">
+    <a class="b" href="{{ if strings.HasPrefix $item.URL "#" }}{{ $item.URL }}{{ else }}{{ $item.URL | relURL }}{{ end }}">
+      {{ $item.Name }}
+    </a>    
+    {{ if gt ($item.Children | len) 0 }}
+      {{ $menu := $item.Children }}
+      {{ $page := $.page }}
+      {{ $include_dict := dict "menu" $menu "menu_class" "submenu" "page" $page }}
+      {{ partial "menu.html" $include_dict }}
+    {{ end }}
+  </li>
+  {{ end }}
+  {{ range .Site.Languages }}
+  <li class="menu-item">
+    <a class="b"  href="{{ .Permalink }}" title="{{ .Language.LanguageName }}">
+      <img loading="lazy" src="/images/{{ .Language.Lang }}.svg" alt="{{ upper .Language.Lang }}" style="height:16px" />
+    </a>
+  </li>
+  {{ end}}  
+</ul>

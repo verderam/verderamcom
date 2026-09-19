@@ -1,0 +1,65 @@
+{{ define "content" }}
+  <header class="page-header bg-gradient outer">
+    {{ if .Params.img_path }}
+    <div class="bg-img" style="background-image: url('{{ .Params.img_path | relURL }}')"></div>
+    {{ end }}
+    <div class="inner-small">
+      <h1 class="page-title" >{{ .Params.title }}</h1>
+      {{ if .Params.subtitle }}
+      <p class="page-subtitle">{{ .Params.subtitle }}</p>
+      {{ end }}
+    </div><!-- .inner-small -->
+  </header><!--.page-header -->
+
+  <div class="showcase-block outer">
+    <div class="inner">
+      <div class="block-items">
+        {{ range $item := .Params.items }}
+        <section class="block-item">
+          <article class="block-item-inside">
+            {{ if $item.preview_img }}
+              {{ $img := $.Page.Resources.GetMatch $item.preview_img }}          
+            <a class="block-item-preview" href="{{ $item.url }}">
+                {{ if $img }}
+                  {{ $min := $img.Fill "374x281"  }}
+                  <img loading="lazy" class="thumbnail res"  src="{{ $min.RelPermalink }}" width="{{ $min.Width }}" height="{{ $min.Height }}" />
+                {{ else }}
+                  {{ $imgPage := $.Site.GetPage "/images" }}
+                  {{ $imgp := $imgPage.Resources.GetMatch $item.preview_img }}
+                  {{ $min := $imgp.Fill "374x281"  }}
+                  <img loading="lazy" class="thumbnail res"  src="{{ $min.RelPermalink }}" width="{{ $min.Width }}" height="{{ $min.Height }}" />
+                {{ end }}
+            </a>
+            {{ end }}
+            <h2 class="block-item-title">
+              <a href="{{ $item.url }}">{{ $item.title }}
+                  {{ if $item.ico }}
+                  <img loading="lazy" valign="middle" style="float:right" height="32" width="32" src="/images/ico/{{ $item.ico }}.png" />
+                  {{ end }}
+              </a>
+            </h2>
+            {{ if $item.subtitle }}
+            <p class="block-item-text">{{ $item.subtitle | safeHTML }}</p>
+            {{ end }}            
+          </article><!-- .block-item-inside -->
+        </section><!-- .block-item -->
+        {{ end }}
+      </div><!-- .block-items -->
+    </div><!-- .inner-->
+  </div><!-- .showcase-block -->
+  {{ if .Params.sections }}
+    <div class="sect">
+      {{ range $section := .Params.sections }}
+        {{ $include_dict := dict "section" $section "Site" $.Site }}
+        {{ partial $section.component $include_dict }}
+      {{ end }}
+    </div>
+  {{ end }}
+{{ end }}
+{{ define "c2"}}
+  {{ if .Content }}
+    <section class="inner">
+    {{ .Content | safeHTML }}
+    </section>
+  {{ end }}
+{{ end }}

@@ -1,0 +1,50 @@
+{{ $file := (printf "*%s*" (.Get "src")) }}
+{{ $src := .Page.Resources.GetMatch (print $file) }}
+
+{{/* */}}
+{{- if not $src -}}
+  {{ $file := (printf "/content/images/%s" (.Get "src")) }}
+  {{ if (fileExists $file) -}}
+    {{ $src := readFile  $file }}
+  {{else}}
+    {{ $src := readFile  "/content/images/ciscohat.jpg" }}
+  {{- end}}
+{{- end}}
+
+
+
+{{ $tinyw := default "500x" }}
+{{ $smallw := default "800x" }}
+{{ $mediumw := default "1200x" }}
+{{ $largew := default "1500x" }}
+{{ .Scratch.Set "tiny" ($src.Resize $tinyw) }}
+{{ .Scratch.Set "small" ($src.Resize $smallw) }}
+{{ .Scratch.Set "medium" ($src.Resize $mediumw) }}
+{{ .Scratch.Set "large" ($src.Resize $largew) }}
+{{ $tiny := .Scratch.Get "tiny" }}
+{{ $small := .Scratch.Get "small" }}
+{{ $medium := .Scratch.Get "medium" }}
+{{ $large := .Scratch.Get "large" }}
+<img loading="lazy" class="imgres" style="max-width:100%;height:auto"
+  {{ with .Get "sizes" }}sizes='{{.}}'{{ else }}sizes="(min-width: 35em) 1200px, 100vw"{{ end }}
+  srcset='
+  {{ if ge $src.Width "500" }}
+    {{ with $tiny.RelPermalink }}{{.}} 500w{{ end }}
+  {{ end }}
+  {{ if ge $src.Width "800" }}
+    {{ with $small.RelPermalink }}, {{.}} 800w{{ end }}
+  {{ end }}
+  {{ if ge $src.Width "1200" }}
+    {{ with $medium.RelPermalink }}, {{.}} 1200w{{ end }}
+  {{ end }}
+  {{ if ge $src.Width "1500" }}
+    {{ with $large.RelPermalink }}, {{.}} 1500w {{ end }}
+  {{ end }}'
+  {{ if .Get $medium }}
+    src="{{ $medium.RelPermalink }}" 
+  {{ else }}
+    src="{{ $src.RelPermalink }}" 
+  {{ end }}
+  {{ with .Get "alt" }}alt='{{.}}'{{ end }}>
+
+  {{/* https://regisphilibert.com/blog/2018/01/hugo-page-resources-and-how-to-use-them/ */}}

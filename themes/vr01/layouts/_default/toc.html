@@ -1,0 +1,16 @@
+{{ define "content" }}
+{{ $menu := .Site.Menus.main }}
+<article class="post page post-full">
+    <div class="toc-wrap">
+    <ul class="toc docs-toc ac">
+    {{ range $item := $menu }}
+        <li class="toc-menu toc-item">
+            <a class="b" href="{{ if strings.HasPrefix $item.URL "#" }}{{ $item.URL }}{{ else }}{{ $item.URL | relURL }}{{ end }}">
+              {{ $item.Name }}
+            </a>
+          </li>
+    {{ end }}
+    </ul>
+    </div>
+  </article><!-- //TODO: menu childrens -->
+{{ end }}

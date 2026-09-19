@@ -1,0 +1,20 @@
+<header class="clear th">
+  <nav class="inner" style="line-height:48px">
+      {{ if .Site.Data.header.logo_img }}
+        <a href="{{ .Site.Data.header.url | default "/" | relURL }}">
+          <img src="/images/vrlogo.svg" alt="VerdeRAM" style="height:36px;width:auto;vertical-align:middle" valign="middle" />
+        </a>    
+      {{ end }}
+      {{ if and .Site.Menus.main .Site.Data.header.has_nav }}
+      <span class="dx hs">
+          {{ $menu := .Site.Menus.main }}
+          {{ $include_dict := dict "menu" $menu "mnu" "menu" "page" . }}
+          {{ partial "menu.html" $include_dict }}
+          <a href="mailto:contact+web@verderam.com" target="_blank"  title="scrivici un'email"><i class="icon-mail"></i></a>
+          <a href="https://wa.me/393282012672" target="_blank"  title="scrivici su Whatsapp"><i class="icon-whatsapp"></i></a>
+          <a href="https://www.iperiusremote.it/" target="_blank"  title="assistenza remota"><i class="icon-wifi"></i></a>
+      </span>
+      <a href="/toc" class="dx hl" style="padding-right:2em;font-size:1.5em">☰</a>
+      {{ end }}
+    </nav>
+</header>

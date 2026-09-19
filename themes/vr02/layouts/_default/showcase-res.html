@@ -1,0 +1,55 @@
+{{ define "content" }}
+<section class="pg">
+    {{ partial "pg_header.html" .}}
+
+<div class="inner flex wrap showcase {{$.Name|lower}}">
+    {{ range $item := .Params.items }}
+    <section class="ac {{ $item.id }}">
+        <article class="card">
+            {{ if $item.preview_img }}
+            {{ $img := $.Page.Resources.GetMatch $item.preview_img }}          
+          <a  href="{{ $item.url }}">
+              {{ if $img }}
+                {{ $min := $img.Fill "374x281"  }}
+                <img loading="lazy" class="thumbnail res"  src="{{ $min.RelPermalink }}" width="{{ $min.Width }}" height="{{ $min.Height }}" />
+              {{ else }}
+                {{ $imgPage := $.Site.GetPage "/images" }}
+                {{ $imgp := $imgPage.Resources.GetMatch $item.preview_img }}
+                {{ $min := $imgp.Fill "340x226"  }}
+                <img loading="lazy" class="thumbnail res"  src="{{ $min.RelPermalink }}" width="{{ $min.Width }}" height="{{ $min.Height }}" />
+              {{ end }}
+          </a>
+          {{ end }}
+          <h2>
+              <a href="{{ $item.url }}">{{ $item.title }}
+                  {{ if $item.ico }}
+                  <img loading="lazy" valign="middle" style="float:right" height="32" width="32" src="/images/ico/{{ $item.ico }}.png" />
+                  {{ end }}
+              </a>
+            </h2>          
+            {{ if $item.subtitle }}
+            <p>{{ $item.subtitle | safeHTML }}</p>
+            {{ end }}            
+        </article>
+      </section>
+      {{ end }}    
+</div>
+
+  {{ if .Params.sections }}
+    <div class="sect">
+      {{ range $section := .Params.sections }}
+        {{ $include_dict := dict "section" $section "Site" $.Site }}
+        {{ partial $section.component $include_dict }}
+      {{ end }}
+    </div>
+  {{ end }}
+{{ end }}
+{{ define "c2"}}
+  {{ if .Content }}
+    <section class="inner">
+    {{ .Content | safeHTML }}
+    </section>
+  {{ end }}
+
+</section>
+{{ end }}

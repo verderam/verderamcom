@@ -1,0 +1,5 @@
+{{ range $item := .menu }}
+<a class="mnu-item" href="{{ if strings.HasPrefix $item.URL "#" }}{{ $item.URL }}{{ else }}{{ $item.URL | relURL }}{{ end }}">
+    {{ $item.Name }}
+  </a>  
+{{ end }}

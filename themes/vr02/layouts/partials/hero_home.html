@@ -1,0 +1,25 @@
+<section id="{{ .section.section_id }}" class="bg hero hero-home">
+  <div class="inner hero-cnt vco">
+      <section class="psrtop">
+          <div class="ac">
+            <p class="psrl">
+              <img src="/images/ue.svg" title="Unione Europea" />
+              <img src="/images/ri.svg" title="Repubblica Italiana"  />
+              <img src="/images/rl.svg"  title="Regione Liguria" />
+            </p>
+            <p>
+              <b>Programma di Sviluppo Rurale <br class="hl" />2014-2020</b><br />
+              Fondo Europeo Agricolo <br class="hl" />per lo Sviluppo Rurale:<br />
+              l'Europa investe <br class="hl" />nelle zone rurali.
+            </p>
+          </div>
+      </section>    
+    <h1 class="ac slogan">
+      <img src="/images/vrlogo.svg" style="max-width:90%;min-width:256px;margin:1em 0 1em 0"/><br />
+      {{ partial "markdownify-block" .section.content }}
+    </h1>
+    <p class="subtl ac">
+      {{.section.subtitle |safeHTML}}
+    </p>
+  </div>
+</section>

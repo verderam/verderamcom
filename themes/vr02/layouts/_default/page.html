@@ -1,0 +1,34 @@
+{{ define "content" }}
+<section class="pg">
+    {{ partial "pg_header.html" .}}
+    <article class="inner txt padl page">
+
+        {{ if .Params.cover }}
+            {{ $imgPage := $.Site.GetPage "/images" }}
+            {{ $img := $imgPage.Resources.GetMatch .Params.cover }}
+            {{ if $img }}
+              {{ $min := $img.Fill "480x360"  }}
+              <figure class="cover hs" style="margin:-7em 0 11em 0;transform:translateX(4.5em)">
+                <img loading="lazy" class="oz res sh brd dx rdx" src="{{ $min.RelPermalink }}" width="{{ $min.Width }}" height="{{ $min.Height }}" />
+              </figure>
+            {{ end }}
+      {{ end }}
+
+
+        {{ .Content }}
+      </article>
+</section>
+  {{ if .Params.cit }}
+  {{ $c := .Params.cit }}
+    <section class="cit inner ac padm">
+      <div>
+        <i>"{{$c.text |safeHTML}}"</i>
+      </div>
+      <p class="b">
+          <a href="{{ $c.lnk }}" target="_blank">
+          {{$c.auth }}, {{$c.in}}
+          </a>
+      </p>
+    </section>
+  {{ end }}
+{{ end }}

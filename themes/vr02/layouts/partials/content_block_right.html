@@ -1,0 +1,22 @@
+<section class="cnt-blk img-right {{ if .section.cl }}{{ .section.cl |lower }}{{ end }}">
+    <article class="inner flex">
+        <div class="txt pads" style="margin:auto">
+          <h2>{{ .section.title |safeHTML }}</h2>
+          <div>
+            {{ partial "markdownify-block" .section.content }}
+          </div>
+          {{ if .section.actions }}
+          <div class="actions ac">
+            {{ range $action := .section.actions }}
+            <a href="{{ $action.url | safeURL }}" class="btn rnd">{{ $action.label }}</a>
+            {{ end }}
+          </div>
+          {{ end }}
+        </div>
+        {{ if .section.image }}
+        <figure class="col-6">
+          <img loading="lazy" class="oz thumbnail brd sh rdx" src="/images/{{ .section.image | relURL }}" alt="{{ .section.title }}" />
+        </figure>
+        {{ end }}        
+    </article>
+  </section>

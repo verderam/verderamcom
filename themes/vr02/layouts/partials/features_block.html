@@ -1,0 +1,18 @@
+      {{ if .section.featureslist }}
+      <div class="inner flex features clear">
+        {{ range $feature := .section.featureslist }}
+        <section class="{{ $feature.id }}" id="{{ $feature.id }}-feature">
+          <article class="hero-cnt">
+            <h3>{{ $feature.title }}</h3>
+            <div class="txt">
+              {{ partial "markdownify-block" $feature.content }}
+            </div>
+            {{ if $feature.actions }}
+              {{ $include_dict := dict "actions" $feature.actions }}
+              {{ partial "cta_buttons.html" $include_dict }}
+            {{ end }}
+          </article>
+        </section>
+        {{ end }}
+      </div>
+      {{ end }}

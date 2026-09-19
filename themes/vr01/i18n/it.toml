@@ -1,0 +1,17 @@
+[more]
+other = "Altri..."
+
+[allTitle]
+other = "Tutti nella categoria {{.Title }}"
+
+[recentTitle]
+other = "{{.Title }} recenti"
+
+[readMore]
+other = "continua a leggere..."
+
+[whatsInThis]
+other = "Argomento: {{ .Type }}"
+
+[related]
+other = "Correlati"

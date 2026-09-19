@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+    <head>    
+        <title>{{ if .Title }}{{ .Title }} - {{ end }}{{ .Site.Title }}</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- <link rel="stylesheet" type="text/css" media="all" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,300italic,400italic|Droid+Sans|Raleway:100,800|Roboto+Mono" /> -->
+        <link rel="stylesheet" href="/assets/css/icn.css" />
+        <link rel="stylesheet" href="/assets/css/vr.css" />
+        <!--[if IE]>
+          <link rel="stylesheet" href="/assets/css/ie.css" />
+        <![endif]-->
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+        <!--  translations -->
+        {{ if .IsTranslated }}
+          {{ range .Translations }}
+            <link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}" title="{{ .Language.LanguageName }}" />
+          {{ end }}
+        {{ end }}
+    </head>
+    <body>
+        {{ block "body" .}}
+        <div id="page" class="site {{ if .Title }}{{ .Name |lower }}{{ end }}">
+          {{ partial "header.html" . }}
+          <main id="content" class="main">
+            {{ block "content" . }}{{ end }}
+            {{ block "c2" . }}{{ end }}
+          </main><!-- .site-content -->
+          {{ partial "footer.html" . }}
+        </div><!-- .site -->
+        {{ end }} <!--  end block body -->
+        <script data-no-instant src="{{ "assets/js/lazyload.min.js" | relURL }}"></script>
+        <script data-no-instant=""> 
+            LazyLoad.js('{{ "assets/js/instantclick.min.js" | relURL }}', function () {
+                InstantClick.init();
+            });
+        </script>
+    </body> 
+</html>

@@ -1,0 +1,32 @@
+{{ define "body" }}
+{{ $menu := .Site.Menus.main }}
+<style>
+  table{border-collapse:collapse;height:100vh}
+  td a{height:100%;width:100%;font-size:2em}
+  table.toc td{border:1px silver solid;}
+</style>
+<table class="toc" style="width:100%;">
+    {{ range $item := $menu }}
+    <tr style="vertical-align:center">
+      <td class="ac" valign="center";style="vertical-align:center;height:4em;line-height:4em">
+        <a class="b" href='{{ if strings.HasPrefix $item.URL "#" }}{{ $item.URL }}{{ else }}{{ $item.URL | relURL }}{{ end }}'>
+            {{ $item.Name }}
+          </a>
+      </td>
+    </tr>
+    {{ end }}
+</table>
+<!--
+<article class="ac tbl">
+    {{ range $item := $menu }}
+    <div class="tr ac">
+      <p class="td ac vmenu fw" style="">
+          <a class="b" href="{{ if strings.HasPrefix $item.URL "#" }}{{ $item.URL }}{{ else }}{{ $item.URL | relURL }}{{ end }}">
+              {{ $item.Name }}
+            </a>
+      </p>
+    </div>
+    {{ end }}
+  </article>
+-->
+{{ end }}
