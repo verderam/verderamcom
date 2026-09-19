@@ -1,4 +1,5 @@
 ---
+draft: true
 title: Community Round-up
 date: '2019-05-27'
 content_img_path: images/2.jpg

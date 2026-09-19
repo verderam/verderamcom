@@ -1,4 +1,5 @@
 ---
+draft: true
 title: Plug-ins
 weight: 2
 layout: docs

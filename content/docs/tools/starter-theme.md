@@ -1,4 +1,5 @@
 ---
+draft: true
 title: Starter Theme
 weight: 1
 layout: docs

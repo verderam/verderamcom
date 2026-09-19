@@ -1,4 +1,5 @@
 ---
+draft: true
 title: Virtualizzazione
 excerpt: >-
   Progettiamo, realizziamo e manteniamo infrastrutture virtualizzate HA di classe enterprise basate su tecnologia VMWare(R) ESXi,  Microsoft(R) Hyper-V, Proxmox VE

@@ -1,21 +1,23 @@
 title: 'Agricoltura, vivaismo ed informatica'
 baseURL: /
-LanguageCode: "it_IT"
 defaultContentLanguage: "it"
 defaultContentLangageInSubdir: false
 theme: "vr02"
 languages:
  it:
   lang: "it"
-  languageName: "Italiano"
+  label: "Italiano"
+  locale: "it_IT"
   weight: 1
  en:
   lang: "en"
-  languageName: "English"
-  weight: 2 
+  label: "English"
+  locale: "en_US"
+  weight: 2
 # fr:
 #  lang: "fr"
-#  languageName: "Français"
+#  label: "Français"
+#  locale: "fr_FR"
 #  weight: 3
 params:
   palette: verderam01
@@ -52,11 +54,21 @@ disableKinds:
   - RSS
   - robotsTXT
   - "404"
+  - taxonomy
+  - term
+taxonomies: {}
 enableEmoji: true
 pluralizeListTitles: false
 paginate: 20
 verbose: true
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
 imaging:
   resampleFilter: 'box'
-  quality: 95
   anchor: 'smart'
+  jpeg:
+    quality: 95
+  webp:
+    quality: 95

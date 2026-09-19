@@ -1,11 +1,11 @@
 <header class="clear th">
   <nav class="inner" style="line-height:48px">
-      {{ if .Site.Data.header.logo_img }}
-        <a href="{{ .Site.Data.header.url | default "/" | relURL }}">
+      {{ if hugo.Data.header.logo_img }}
+        <a href="{{ hugo.Data.header.url | default "/" | relURL }}">
           <img src="/images/vrlogo.svg" alt="VerdeRAM" style="height:36px;width:auto;vertical-align:middle" valign="middle" />
-        </a>    
+        </a>
       {{ end }}
-      {{ if and .Site.Menus.main .Site.Data.header.has_nav }}
+      {{ if and .Site.Menus.main hugo.Data.header.has_nav }}
       <span class="dx hs">
           {{ $menu := .Site.Menus.main }}
           {{ $include_dict := dict "menu" $menu "mnu" "menu" "page" . }}

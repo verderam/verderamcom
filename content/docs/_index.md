@@ -5,7 +5,7 @@ title: Informatica
 #    name: Docs
 #    weight: 18
 layout: docs
-draft: false
+draft: true
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tincidunt id ante id varius. Fusce a gravida dolor.

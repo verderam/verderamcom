@@ -1,6 +1,5 @@
 ---
-name : images
-title: Immagini
+title: Posts
 build:
   render: never
   list: never

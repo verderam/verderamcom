@@ -1,4 +1,5 @@
 ---
+draft: true
 title: Typography
 weight: 1
 layout: docs
