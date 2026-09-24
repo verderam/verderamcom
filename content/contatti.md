@@ -38,7 +38,6 @@ o a <a href="http://www.comune.chiavari.ge.it" target="_blank" title="Sito istit
 
 <div class="note">
   <h5>
-  :heavy_exclamation_mark: 
     <small class="b i">Disclaimer: sa di <a href="https://youtu.be/ytHHRj545FE" target="_blank">accoglienza tipica ligure</a>, ma un po' è causa di forza maggiore, eh :)</small>
   </h5> 
   <b>Attenzione</b>: l'azienda ha più appezzamenti e putroppo non possiamo essere sempre dappertutto. Nei campi, inoltre, il campanello non c'è ancora ;). <br />La cosa migliore da fare, perciò, è <b>telefonare</b> con un preavviso anche di pochi minuti al numero <a class="b" href="tel:+393282012672">328.20.12.672</a>, così ci troveremo di sicuro.<br />
