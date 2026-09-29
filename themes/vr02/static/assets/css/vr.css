@@ -58,6 +58,19 @@ pre{background:#f1f1f1;padding:1em}
 .hero-cnt,.card,.page{background-color:rgba(255, 255, 255, 0.75);box-shadow:0 1em 2em -1em rgba(0, 0, 0, 0.5);padding:2em;}
 .hero-cnt h3{margin-bottom:2em}
 .hero-home{background-image:url(/images/bouganville01.jpg);}
+.fatspecial-badge{position:fixed;display:block;top:4em;right:1em;z-index:150;width:110px;box-shadow:0 .3em .8em rgba(0,0,0,.4);border-radius:.3em;overflow:hidden}
+.fatspecial-badge img{display:block;width:100%;height:auto}
+@media (max-width: 1025px){
+  .fatspecial-badge{top:calc(48px + 1em);width:84px}
+}
+
+.css-popup{display:none;position:fixed;top:0;right:0;bottom:0;left:0;z-index:300}
+.css-popup:target{display:block}
+.css-popup-overlay{position:absolute;top:0;right:0;bottom:0;left:0;background:rgba(0,0,0,.8)}
+.css-popup-content{position:relative;max-width:92vw;max-height:88vh;margin:6vh auto 0 auto;text-align:center}
+.css-popup-content img{max-width:100%;max-height:85vh;border-radius:.3em;box-shadow:0 1em 3em rgba(0,0,0,.6)}
+.css-popup-close{position:absolute;top:-2.2em;right:0;color:#fff;font-size:2em;line-height:1;text-decoration:none;font-weight:bold}
+.css-popup-close:hover,.css-popup-close:focus{opacity:.75}
 .cnt-blk{margin: 6em auto;padding-top:3em;padding-bottom:3em}
 .bg-agri{background-color:rgb(195, 236, 182);color:#000}
 .bg-info{background-color:rgb(200, 222, 248);color:#000}
