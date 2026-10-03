@@ -16,7 +16,7 @@ items:
   - title: Formio
     preview_img: formio.jpg
     url: '#'    
-  - title: Tillanzia
+  - title: Tillandsia
     preview_img: tillanzia.jpg
     url: '#'    
   - title: Chicas
@@ -34,7 +34,7 @@ items:
   - title: Evonimo
     preview_img: evonymus.jpg
     url: '#'    
-  - title: Aspidirstria
+  - title: Aspidistra
     preview_img: aspidistra.jpg
     url: '#'    
   - title: Plumbago
