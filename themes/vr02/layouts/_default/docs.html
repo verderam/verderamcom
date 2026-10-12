@@ -22,7 +22,7 @@
                 {{ if $has_children }}
                   <ul class="docs-section-items">
                     {{ range $child_page := $child_pages }}
-                    <li class="docs-section-item"><a href="{{ $child_page.Params.URL }}" class="docs-item-link">{{ $child_page.Title }}<span class="icon-angle-right" aria-hidden="true"></span></a></li>
+                    <li class="docs-section-item"><a href="{{ $child_page.Params.URL }}" class="docs-item-link">{{ $child_page.Title }}›</a></li>
                     {{ end }}
                   </ul><!-- .docs-section-pages -->
                 {{ end }}

@@ -53,14 +53,14 @@ sections:
       - label: 'Telefona al 328.20.12.672'
         url: 'tel:+393282012672'
       - label: 'Scrivici'
-        url: 'mailto:contact+web@verderam.com?subject=Richiesta di contatto'
+        url: 'mailto:contact+web@verderam.com?subject=Richiesta%20di%20contatto'
     component: content_block.html
     content: >-
       **VerdeRAM** è, prima di tutto, un'azienda [**agricola**](/agricoltura/), [**olivicola**](/ulivo/) e [**florovivaistica**](/vivaismo/)
       distributa sul territorio dei comuni di
       <a href="http://www.comune.chiavari.ge.it" target="_blank" title="Sito istituzionale del Comune di Chiavari">Chiavari</a> 
       e di <a href="http://www.comune.leivi.ge.it" target="_blank" title="Sito istituzionale del Comune di Leivi">Leivi</a>, in provincia di
-      **Genova**. <br /> Per venire a trovarci in **campo** o in **vivaio**  [**telefona**](tel:+393282012672) al numero **328.20.12.672** oppure [**scrivi un'email**](mailto:contact+web@verderam.com?subject=Richiesta di contatto) per concordare un appuntamento.<br />Se preferisci puoi anche avviare una chat <a href="https://t.me/macerie5" target="_blank" title="Telegram">Telegram</a> o <a href="https://wa.me/393282012672" target="_blank" title="Whatsapp">Whatsapp</a>.
+      **Genova**. <br /> Per venire a trovarci in **campo** o in **vivaio**  [**telefona**](tel:+393282012672) al numero **328.20.12.672** oppure [**scrivi un'email**](mailto:contact+web@verderam.com?subject=Richiesta%20di%20contatto) per concordare un appuntamento.<br />Se preferisci puoi anche avviare una chat <a href="https://t.me/macerie5" target="_blank" title="Telegram">Telegram</a> o <a href="https://wa.me/393282012672" target="_blank" title="Whatsapp">Whatsapp</a>.
     image: 'biotr.jpg'
     section_id: text-img
     title: Agricoltura e florovivaismo

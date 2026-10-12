@@ -1,32 +1,15 @@
 {{ define "body" }}
 {{ $menu := .Site.Menus.main }}
 <style>
-  table{border-collapse:collapse;height:100vh}
-  td a{height:100%;width:100%;font-size:2em}
-  table.toc td{border:1px silver solid;}
+  .toc-page{display:flex;flex-direction:column;justify-content:center;min-height:calc(100vh - 48px);padding:2em 1em}
+  .toc-page a{display:block;font-size:1.4em;font-weight:600;padding:.6em 0;border-bottom:1px solid var(--line)}
 </style>
-<table class="toc" style="width:100%;">
+<nav class="inner toc-page ac">
+    <a href="/">🏡 Home</a>
     {{ range $item := $menu }}
-    <tr style="vertical-align:center">
-      <td class="ac" valign="center";style="vertical-align:center;height:4em;line-height:4em">
-        <a class="b" href='{{ if strings.HasPrefix $item.URL "#" }}{{ $item.URL }}{{ else }}{{ $item.URL | relURL }}{{ end }}'>
-            {{ $item.Name }}
-          </a>
-      </td>
-    </tr>
+    <a href="{{ if strings.HasPrefix $item.URL "#" }}{{ $item.URL }}{{ else }}{{ $item.URL | relURL }}{{ end }}">
+        {{ $item.Name }}
+      </a>
     {{ end }}
-</table>
-<!--
-<article class="ac tbl">
-    {{ range $item := $menu }}
-    <div class="tr ac">
-      <p class="td ac vmenu fw" style="">
-          <a class="b" href="{{ if strings.HasPrefix $item.URL "#" }}{{ $item.URL }}{{ else }}{{ $item.URL | relURL }}{{ end }}">
-              {{ $item.Name }}
-            </a>
-      </p>
-    </div>
-    {{ end }}
-  </article>
--->
+</nav>
 {{ end }}

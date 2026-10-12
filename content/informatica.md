@@ -53,7 +53,7 @@ items:
     ico: 'network-wireless-encrypted'
   - title: Collaboration Suite 
     subtitle: >-
-      Configuriamo e gestiamo soluzioni collaborative <i>cloud</i> come <a href="https://gsuite.google.it/intl/it/" target="_blank">GSuite</a>&reg; o <i>on site</i> come <a href="https://www.zimbra.com" target="_blank">Zimbra</a>&reg; o <a href="https://products.office.com/it-it/exchange/microsoft-exchange-server" target="_blank">Microsoft Exchange Server</a>&reg;.
+      Configuriamo e gestiamo soluzioni collaborative <i>cloud</i> come <a href="https://workspace.google.it/intl/it/" target="_blank">Google Workspace</a>&reg; o <i>on site</i> come <a href="https://www.zimbra.com" target="_blank">Zimbra</a>&reg; o <a href="https://products.office.com/it-it/exchange/microsoft-exchange-server" target="_blank">Microsoft Exchange Server</a>&reg;.
     url: '#'         
     ico: 'internet-mail'
 sections:   

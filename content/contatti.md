@@ -31,10 +31,10 @@ layout: pagesmall
   <li><a href="https://goo.gl/maps/yxUfHdUPh8qrvbZCA" data-no-instant target="_blank" title="Visualizza la mappa ed ottieni indicazioni stradali">Via S. Terenziano, 18 - 16040 Leivi (GE)</a></li>
 </ul>
 <p>
-  A [questo link](#) è possibile scaricare una mappa completa di tutti gli appezzamenti. Il file, in formato <a href="https://developers.google.com/kml/?gl=IT&hl=it" target="_blank">KML</a>, può essere visualizzato ad esempio con <a href="https://www.qgis.org" target="_blank">QGIS</a> o <a href="https://earth.google.com" target="_blank">Google Earth(R)</a>.
+  A <a href="#">questo link</a> è possibile scaricare una mappa completa di tutti gli appezzamenti. Il file, in formato <a href="https://developers.google.com/kml/?gl=IT&hl=it" target="_blank">KML</a>, può essere visualizzato ad esempio con <a href="https://www.qgis.org" target="_blank">QGIS</a> o <a href="https://earth.google.com" target="_blank">Google Earth(R)</a>.
 </p>
-La sede legale di VerdeRAM è a <a href="http://www.comune.lavagna.ge.it" target="_blank" title="Sito istituzionale del Comune di Lavagna">**Lavagna**</a>, ma quasi tutte le attività si svolgono in campo o nei fabbricati ad uso strumentale presenti in azienda a <a href="http://www.comune.leivi.ge.it" target="_blank" title="Sito istituzionale del Comune di Leivi">**Leivi**</a>
-o a <a href="http://www.comune.chiavari.ge.it" target="_blank" title="Sito istituzionale del Comune di Chiavari">**Chiavari**</a>.
+La sede legale di VerdeRAM è a <a href="http://www.comune.lavagna.ge.it" target="_blank" title="Sito istituzionale del Comune di Lavagna"><b>Lavagna</b></a>, ma quasi tutte le attività si svolgono in campo o nei fabbricati ad uso strumentale presenti in azienda a <a href="http://www.comune.leivi.ge.it" target="_blank" title="Sito istituzionale del Comune di Leivi"><b>Leivi</b></a>
+o a <a href="http://www.comune.chiavari.ge.it" target="_blank" title="Sito istituzionale del Comune di Chiavari"><b>Chiavari</b></a>.
 
 <div class="note">
   <h5>

@@ -1,21 +1,41 @@
 <header class="clear th">
-  <nav class="inner" style="line-height:48px">
+  <nav class="inner">
       {{ if hugo.Data.header.logo_img }}
         <a href="{{ hugo.Data.header.url | default "/" | relURL }}">
-          <img src="/images/vrlogo.svg" alt="VerdeRAM" style="height:36px;width:auto;vertical-align:middle" valign="middle" />
+          <img src="/images/vrlogo.svg" alt="VerdeRAM" style="height:36px;width:auto" />
         </a>
       {{ end }}
       {{ if and .Site.Menus.main hugo.Data.header.has_nav }}
-      <span class="dx hs">
-          {{ $menu := .Site.Menus.main }}
-          {{ $include_dict := dict "menu" $menu "mnu" "menu" "page" . }}
+      {{ $menu := .Site.Menus.main }}
+      {{ $include_dict := dict "menu" $menu "mnu" "menu" "page" . }}
+      <span class="hs nav-top">
           {{ partial "menu.html" $include_dict }}
-          <a href="mailto:contact+web@verderam.com" target="_blank"  title="scrivici un'email"><i class="icon-mail"></i></a>
-          <a href="https://wa.me/393282012672" target="_blank"  title="scrivici su Whatsapp"><i class="icon-whatsapp"></i></a>
-          <a href="https://www.instagram.com/verde.ram/" target="_blank" rel="noopener" title="seguici su Instagram"><i class="icon-instagram"></i></a>
-          <a href="https://www.dwservice.net/" target="_blank"  title="assistenza remota"><i class="icon-wifi"></i></a>
+          <a href="mailto:contact+web@verderam.com" target="_blank" title="scrivici un'email">✉️</a>
+          <a href="https://wa.me/393282012672" target="_blank" title="scrivici su Whatsapp">💬</a>
+          <a href="https://www.instagram.com/verde.ram/" target="_blank" rel="noopener" title="seguici su Instagram">📷</a>
+          <a href="https://www.dwservice.net/" target="_blank" title="assistenza remota">💻</a>
       </span>
-      <a href="/toc" class="dx hl" style="padding-right:2em;font-size:1.5em">☰</a>
+      <a href="#mnav" class="hl mnav-open" aria-label="Apri il menu">☰</a>
       {{ end }}
     </nav>
 </header>
+{{ if and .Site.Menus.main hugo.Data.header.has_nav }}
+{{ $menu := .Site.Menus.main }}
+{{ $include_dict := dict "menu" $menu "mnu" "menu" "page" . }}
+<div class="css-popup mnav" id="mnav" role="dialog" aria-label="Menu del sito">
+  <a href="#" class="css-popup-overlay" tabindex="-1" aria-hidden="true"></a>
+  <div class="css-popup-content mnav-cnt">
+    <a href="#" class="css-popup-close" aria-label="Chiudi il menu">✕</a>
+    <nav class="mnav-list">
+      <a href="/">🏡 Home</a>
+      {{ partial "menu.html" $include_dict }}
+    </nav>
+    <p class="mnav-soc">
+      <a href="mailto:contact+web@verderam.com" title="scrivici un'email">✉️</a>
+      <a href="https://wa.me/393282012672" title="scrivici su Whatsapp">💬</a>
+      <a href="https://www.instagram.com/verde.ram/" rel="noopener" title="seguici su Instagram">📷</a>
+      <a href="https://www.dwservice.net/" title="assistenza remota">💻</a>
+    </p>
+  </div>
+</div>
+{{ end }}

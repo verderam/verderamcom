@@ -1,6 +1,6 @@
 <nav id="docs-nav" class="docs-nav">
   <div id="docs-nav-inside" class="docs-nav-inside sticky">
-    <button id="docs-nav-toggle" class="docs-nav-toggle">Navigate Docs<span class="icon-angle-right" aria-hidden="true"></span></button>
+    <button id="docs-nav-toggle" class="docs-nav-toggle">Navigate Docs›</button>
     <div class="docs-toc-wrap">
       <ul id="docs-toc" class="docs-toc">
         {{ $site := .Site }}
@@ -24,7 +24,7 @@
           <li class="toc-item{{ if $has_children }} has-children{{ end }}{{ if $is_current_page }} current{{ end }}{{ if $is_active }} active{{ end }}">
             <a href="{{ $section_page.Permalink }}">{{ $section_page.Title }}</a>
             {{ if $has_children }}
-              <button class="submenu-toggle"><span class="screen-reader-text">Submenu</span><span class="icon-angle-right" aria-hidden="true"></span></button>
+              <button class="submenu-toggle"><span class="screen-reader-text">Submenu</span>›</button>
               {{ $include_dict := dict "child_pages" $child_pages "page" $page "Site" $site }}
               {{ partial "docs_submenu.html" $include_dict }}
             {{ end }}

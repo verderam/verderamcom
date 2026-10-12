@@ -28,7 +28,7 @@
               <h2 class="block-item-title{{ if $has_children }} line-left{{ end }}"><a href="{{ $section_page.Permalink }}">{{ $section_page.Title }}</a></h2>
               {{ if $section_page.Params.excerpt }}
                 <p class="block-item-text">{{ $section_page.Params.excerpt | safeHTML }}</p>
-                <p class="block-item-cta"><a href="{{ $section_page.Permalink }}">Learn More <span class="icon-arrow-right" aria-hidden="true"></span></a></p>
+                <p class="block-item-cta"><a href="{{ $section_page.Permalink }}">Learn More →</a></p>
               {{ end }}
             </div><!-- .block-item-inside -->
           </section><!-- .block-item -->
