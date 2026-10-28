@@ -1,9 +1,9 @@
       {{ if .section.featureslist }}
-      <div class="inner flex features clear">
+      <div class="inner features clear" id="{{ .section.section_id | default "attivita" | anchorize | replaceRE "[àáÀ]" "a" }}">
         {{ range $feature := .section.featureslist }}
-        <section class="{{ $feature.id }}" id="{{ $feature.id }}-feature">
+        <section class="{{ $feature.id }}" id="{{ $feature.id }}-feature" aria-labelledby="{{ $feature.id }}-title">
           <article class="hero-cnt">
-            <h3>{{ $feature.title }}</h3>
+            <h2 class="h3" id="{{ $feature.id }}-title">{{ $feature.title }}</h2>
             <div class="txt">
               {{ partial "markdownify-block" $feature.content }}
             </div>

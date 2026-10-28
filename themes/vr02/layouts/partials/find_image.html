@@ -1,0 +1,11 @@
+{{- /* Cerca un'immagine tra le risorse del bundle /images (o della pagina) a partire da un percorso. Restituisce la risorsa o nil. */ -}}
+{{- $p := .path | default "" -}}
+{{- $res := false -}}
+{{- if $p -}}
+  {{- $name := path.Base $p -}}
+  {{- with .page -}}{{- with .Resources.GetMatch $name -}}{{- $res = . -}}{{- end -}}{{- end -}}
+  {{- if not $res -}}
+    {{- with site.GetPage "/images" -}}{{- with .Resources.GetMatch $name -}}{{- $res = . -}}{{- end -}}{{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- return $res -}}

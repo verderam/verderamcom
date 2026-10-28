@@ -22,7 +22,7 @@ layout: pagesmall
 
 - Cellulare: **328.20.12.672**, disponibile anche su <a href="https://t.me/macerie5" target="_blank" title="Telegram">Telegram</a> o <a href="https://wa.me/393282012672" target="_blank" title="Whatsapp">Whatsapp</a>
 - Sede: **0185.300.888** (numero VOIP: la chiamata è deviata a cellulare, per cui rispondiamo subito o riceviamo un messaggio vocale)
-- E-mail: <a href="mailto:info+web@verderam.com">info@verderam.com</a>
+- E-mail: <a href="mailto:info+web@verderam.com">info&#64;verderam.com</a>
 
 
 ### :earth_africa: Dove siamo

@@ -1,22 +1,35 @@
-<section class="cnt-blk {{ if .section.cl }}{{ .section.cl |lower }}{{ end }}">
+{{- $right := .right | default false }}
+{{- $img := partial "find_image.html" (dict "path" .section.image) }}
+{{- $fig := "" }}
+{{- if .section.image }}
+  {{- $cls := printf "oz thumbnail brd sh %s" (cond $right "rdx" "rsx") }}
+  {{- $alt := .section.alt | default (.section.title | plainify) }}
+  {{- if $img }}
+    {{- $fig = partial "img_responsive.html" (dict "img" $img "alt" $alt "class" $cls "w" 560 "sizes" "(min-width: 1025px) 560px, calc(100vw - 2rem)") }}
+  {{- else }}
+    {{- $fig = printf `<img loading="lazy" decoding="async" class="%s" src="%s" alt="%s" />` $cls (printf "/images/%s" .section.image | relURL) $alt }}
+  {{- end }}
+{{- end }}
+<section class="cnt-blk{{ if $right }} img-right{{ end }}{{ with .section.cl }} {{ . | lower }}{{ end }}">
   <article class="inner flex">
-      {{ if .section.image }}
-      <figure class="col-6">
-        <img loading="lazy" class="oz thumbnail brd sh rsx" src="/images/{{ .section.image | relURL }}" alt="{{ .section.title }}" />
-      </figure>
-      {{ end }}
-      <div class="txt pads" style="margin:auto">
-        <h2>{{ .section.title }}</h2>
+      {{- if and $fig (not $right) }}
+      <figure class="col-6">{{ $fig | safeHTML }}</figure>
+      {{- end }}
+      <div class="txt pads">
+        <h2>{{ .section.title | safeHTML }}</h2>
         <div>
           {{ partial "markdownify-block" .section.content }}
         </div>
-        {{ if .section.actions }}
-        <div class="actions ac">
-          {{ range $action := .section.actions }}
+        {{- if .section.actions }}
+        <div class="actions">
+          {{- range $action := .section.actions }}
           <a href="{{ $action.url | safeURL }}" class="btn rnd">{{ $action.label }}</a>
-          {{ end }}
+          {{- end }}
         </div>
-        {{ end }}
+        {{- end }}
       </div>
+      {{- if and $fig $right }}
+      <figure class="col-6">{{ $fig | safeHTML }}</figure>
+      {{- end }}
   </article>
 </section>

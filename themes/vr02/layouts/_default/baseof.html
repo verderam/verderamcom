@@ -1,24 +1,33 @@
 <!doctype html>
-<html>
-    <head>    
-        <title>{{ if .Title }}{{ .Title }} - {{ end }}{{ .Site.Title }}</title>
+<html lang="{{ .Site.Language.Lang | default "it" }}">
+    <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="theme-color" content="#006633" />
-        <link rel="stylesheet" href="/assets/css/vr.css" />
-        <!--[if IE]>
-          <link rel="stylesheet" href="/assets/css/ie.css" />
-        <![endif]-->
-        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-        <!--  translations -->
-        {{ if .IsTranslated }}
-          {{ range .Translations }}
-            <link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}" title="{{ .Language.Label }}" />
-          {{ end }}
-        {{ end }}
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+        <title>{{ if and .Title (not .IsHome) }}{{ .Title }} - {{ end }}{{ .Site.Title }}</title>
+        {{- $desc := .Params.description | default (.Params.subtitle | plainify) | default .Site.Params.description | default .Site.Title }}
+        <meta name="description" content="{{ $desc | plainify | htmlUnescape | strings.TrimSpace | truncate 160 }}">
+        <meta name="theme-color" content="#006633">
+        <meta name="color-scheme" content="light">
+        <meta name="format-detection" content="telephone=no">
+        {{- /* Foglio di stile unico: inline per non generare richieste (Instantclick conserva l'<head> della prima pagina) */}}
+        {{- $css := resources.Get "css/vr.css" | minify }}
+        {{- if .Site.Params.externalCSS }}
+        {{- $css = $css | fingerprint }}
+        <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+        {{- else }}
+        <style>{{ $css.Content | safeCSS }}</style>
+        {{- end }}
+        <link rel="icon" href="/favicon.ico" type="image/x-icon">
+        {{- if .IsTranslated }}
+        {{- range .AllTranslations }}
+        <link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}" title="{{ .Language.Label }}">
+        {{- end }}
+        {{- end }}
     </head>
     <body>
-        {{ block "body" .}}
+        {{- block "body" . }}
+        <a class="skip" href="#content">Vai al contenuto</a>
+        {{ partial "logo_symbol.html" . }}
         <div id="page" class="site {{ if .Title }}{{ .Name | anchorize }}{{ end }}">
           {{ partial "header.html" . }}
           <!--
@@ -33,14 +42,21 @@
             </div>
           </div>
         -->
-          <main id="content" class="main">
+          <main id="content" class="main" tabindex="-1">
             {{ block "content" . }}{{ end }}
             {{ block "c2" . }}{{ end }}
-          </main><!-- .site-content -->
+          </main>
           {{ partial "footer.html" . }}
-        </div><!-- .site -->
-        {{ end }} <!--  end block body -->
-        <script data-no-instant src="{{ "assets/js/lazyload.min.js" | relURL }}"></script>
-        <script data-no-instant src="{{ "assets/js/init.js" | relURL }}"></script>
-    </body> 
+        </div>
+        {{- end }}
+        {{- /*
+          InstantClick + avvio in un unico file esterno: compatibile con una CSP "script-src 'self'"
+          senza hash né 'unsafe-inline'. Il nome contiene l'impronta del contenuto, quindi può
+          essere messo in cache per sempre: la richiesta avviene solo al primo accesso.
+          data-no-instant: InstantClick non lo riesegue ad ogni cambio pagina.
+        */}}
+        {{- $init := resources.FromString "assets/js/ic-init.js" "\n;InstantClick.on('change',function(initial){if(initial)return;var m=document.getElementById('content');if(m&&!location.hash){try{m.focus({preventScroll:true})}catch(e){m.focus()}}});\nInstantClick.init();\n" }}
+        {{- $js := slice (resources.Get "js/instantclick.min.js") $init | resources.Concat "assets/js/vr.js" | minify | fingerprint }}
+        <script data-no-instant src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
+    </body>
 </html>

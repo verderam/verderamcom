@@ -1,5 +1,5 @@
-{{ range $item := .menu }}
-<a class="mnu-item" href="{{ if strings.HasPrefix $item.URL "#" }}{{ $item.URL }}{{ else }}{{ $item.URL | relURL }}{{ end }}">
-    {{ $item.Name }}
-  </a>  
-{{ end }}
+{{- $page := .page }}
+{{- range $item := .menu }}
+{{- $cur := and $page (or ($page.IsMenuCurrent "main" $item) ($page.HasMenuCurrent "main" $item)) }}
+<a class="mnu-item" href="{{ if strings.HasPrefix $item.URL "#" }}{{ $item.URL }}{{ else }}{{ $item.URL | relURL }}{{ end }}"{{ if $cur }} aria-current="page"{{ end }}>{{ $item.Name }}</a>
+{{- end }}

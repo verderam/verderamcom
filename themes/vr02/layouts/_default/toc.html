@@ -1,15 +1,13 @@
 {{ define "body" }}
 {{ $menu := .Site.Menus.main }}
-<style>
-  .toc-page{display:flex;flex-direction:column;justify-content:center;min-height:calc(100vh - 48px);padding:2em 1em}
-  .toc-page a{display:block;font-size:1.4em;font-weight:600;padding:.6em 0;border-bottom:1px solid var(--line)}
-</style>
-<nav class="inner toc-page ac">
+{{ partial "logo_symbol.html" . }}
+<main id="content" class="inner toc-page ac" tabindex="-1">
+  <h1 class="sr">Menu</h1>
+  <nav aria-label="Menu del sito">
     <a href="/">🏡 Home</a>
-    {{ range $item := $menu }}
-    <a href="{{ if strings.HasPrefix $item.URL "#" }}{{ $item.URL }}{{ else }}{{ $item.URL | relURL }}{{ end }}">
-        {{ $item.Name }}
-      </a>
-    {{ end }}
-</nav>
+    {{- range $item := $menu }}
+    <a href="{{ if strings.HasPrefix $item.URL "#" }}{{ $item.URL }}{{ else }}{{ $item.URL | relURL }}{{ end }}">{{ $item.Name }}</a>
+    {{- end }}
+  </nav>
+</main>
 {{ end }}

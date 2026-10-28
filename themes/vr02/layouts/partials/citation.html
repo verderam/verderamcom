@@ -1,0 +1,9 @@
+{{- with .Params.cit }}
+<figure class="cit ac">
+  <blockquote>{{ .text | safeHTML }}</blockquote>
+  <figcaption>
+    {{- if .lnk }}<a href="{{ .lnk }}" target="_blank" rel="noopener">{{ .auth }}, <cite>{{ .in }}</cite></a>
+    {{- else }}{{ .auth }}, <cite>{{ .in }}</cite>{{ end -}}
+  </figcaption>
+</figure>
+{{- end }}
