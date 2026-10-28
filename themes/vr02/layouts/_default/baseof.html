@@ -49,10 +49,14 @@
           {{ partial "footer.html" . }}
         </div>
         {{- end }}
-        {{- /* Instantclick inline (0 richieste). data-no-instant: non viene rieseguito ad ogni cambio pagina. */}}
-        {{- $ic := resources.Get "js/instantclick.min.js" }}
-        <script data-no-instant>{{ $ic.Content | safeJS }}
-InstantClick.on('change',function(initial){if(initial)return;var m=document.getElementById('content');if(m&&!location.hash){try{m.focus({preventScroll:true})}catch(e){m.focus()}}});
-InstantClick.init();</script>
+        {{- /*
+          InstantClick + avvio in un unico file esterno: compatibile con una CSP "script-src 'self'"
+          senza hash né 'unsafe-inline'. Il nome contiene l'impronta del contenuto, quindi può
+          essere messo in cache per sempre: la richiesta avviene solo al primo accesso.
+          data-no-instant: InstantClick non lo riesegue ad ogni cambio pagina.
+        */}}
+        {{- $init := resources.FromString "assets/js/ic-init.js" "\n;InstantClick.on('change',function(initial){if(initial)return;var m=document.getElementById('content');if(m&&!location.hash){try{m.focus({preventScroll:true})}catch(e){m.focus()}}});\nInstantClick.init();\n" }}
+        {{- $js := slice (resources.Get "js/instantclick.min.js") $init | resources.Concat "assets/js/vr.js" | minify | fingerprint }}
+        <script data-no-instant src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
     </body>
 </html>
