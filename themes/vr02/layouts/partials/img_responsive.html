@@ -1,0 +1,25 @@
+{{- /*
+  Immagine responsiva WebP con srcset (una sola richiesta, della dimensione giusta).
+  Parametri: img (risorsa), alt, class, sizes, w (larghezza base, px), h (opz.: ritaglio Fill), lazy (bool, default true)
+*/ -}}
+{{- $img := .img -}}
+{{- $w := .w | default 600 -}}
+{{- $lazy := cond (isset . "lazy") .lazy true -}}
+{{- if $img -}}
+  {{- $set := slice -}}
+  {{- $base := "" -}}
+  {{- range $f := slice 1 2 -}}
+    {{- $tw := mul $w $f -}}
+    {{- if or (eq $f 1) (ge $img.Width $tw) -}}
+      {{- $r := "" -}}
+      {{- if $.h -}}
+        {{- $r = $img.Fill (printf "%dx%d webp q78 Smart" $tw (mul $.h $f)) -}}
+      {{- else -}}
+        {{- $r = $img.Resize (printf "%dx webp q78" (math.Min $tw $img.Width | int)) -}}
+      {{- end -}}
+      {{- if eq $f 1 }}{{ $base = $r }}{{ end -}}
+      {{- $set = $set | append (printf "%s %dw" $r.RelPermalink $r.Width) -}}
+    {{- end -}}
+  {{- end -}}
+<img{{ with .class }} class="{{ . }}"{{ end }} src="{{ $base.RelPermalink }}" srcset="{{ delimit $set ", " }}" sizes="{{ .sizes | default "100vw" }}" width="{{ $base.Width }}" height="{{ $base.Height }}" alt="{{ .alt }}"{{ if $lazy }} loading="lazy"{{ end }} decoding="async" />
+{{- end -}}

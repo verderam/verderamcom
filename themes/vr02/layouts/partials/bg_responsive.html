@@ -1,0 +1,30 @@
+{{- /*
+  Sfondo responsivo in puro CSS: genera versioni WebP ridimensionate dell'immagine
+  e le assegna con media query, così ogni dispositivo scarica una sola immagine
+  della dimensione adatta. Il <style> sta nel <body>: Instantclick lo sostituisce
+  ad ogni cambio pagina.
+  Parametri: sel (selettore CSS), img (risorsa immagine), overlay (gradiente, opz.),
+             portrait (bool: ritaglio verticale per smartphone)
+*/ -}}
+{{- $img := .img -}}
+{{- $sel := .sel -}}
+{{- $ov := cond (isset . "overlay") (printf "%s," .overlay) "" -}}
+{{- if $img -}}
+{{- $isRaster := in (slice "jpeg" "png" "webp") $img.MediaType.SubType -}}
+{{- if $isRaster -}}
+{{- $s := $img.Resize (printf "%dx webp q78" (math.Min 800 $img.Width | int)) -}}
+{{- $m := $img.Resize (printf "%dx webp q78" (math.Min 1440 $img.Width | int)) -}}
+{{- $l := $img.Resize (printf "%dx webp q78" (math.Min 1920 $img.Width | int)) -}}
+<style>
+{{ $sel }}{background-image:{{ $ov | safeCSS }}url({{ $s.RelPermalink }})}
+{{- if .portrait }}
+{{- $p := $img.Fill "720x1280 webp q72 Smart" }}
+@media (max-aspect-ratio:3/4) and (max-width:47.99em){ {{- $sel }}{background-image:{{ $ov | safeCSS }}url({{ $p.RelPermalink }})}}
+{{- end }}
+@media (min-width:48em){ {{- $sel }}{background-image:{{ $ov | safeCSS }}url({{ $m.RelPermalink }})}}
+@media (min-width:90em),(min-width:48em) and (min-resolution:2dppx){ {{- $sel }}{background-image:{{ $ov | safeCSS }}url({{ $l.RelPermalink }})}}
+</style>
+{{- else -}}
+<style>{{ $sel }}{background-image:{{ $ov | safeCSS }}url({{ $img.RelPermalink }})}</style>
+{{- end -}}
+{{- end -}}

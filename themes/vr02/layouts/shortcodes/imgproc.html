@@ -2,6 +2,9 @@
 {{ $original := $imgPage.Resources.GetMatch (printf "*%s*" (.Get 0)) }}
 {{ $command := .Get 1 }}
 {{ $options := .Get 2 }}
+{{ $alt := .Get 3 | default "" }}
+{{/* conversione in WebP: file più leggeri, nessuna differenza visiva */}}
+{{ if not (findRE `(?i)\b(jpe?g|png|webp|gif)\b` $options) }}{{ $options = printf "%s webp" $options }}{{ end }}
 {{ if eq $command "Fit"}}
 {{ .Scratch.Set "image" ($original.Fit $options) }}
 {{ else if eq $command "Resize"}}
@@ -12,4 +15,4 @@
 {{ errorf "Invalid image processing command: Must be one of Fit, Fill or Resize."}}
 {{ end }}
 {{ $image := .Scratch.Get "image" }}
-<img loading="lazy" style="max-width: 100%; width: auto; height: auto;text-align:center" src="{{ $image.RelPermalink }}" width="{{ $image.Width }}" height="{{ $image.Height }}"  />
+<img loading="lazy" decoding="async" style="max-width:100%;height:auto" src="{{ $image.RelPermalink }}" width="{{ $image.Width }}" height="{{ $image.Height }}" alt="{{ $alt }}" />

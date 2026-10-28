@@ -1,25 +1,22 @@
-<section id="{{ .section.section_id }}" class="bg hero hero-home">
+{{- $bg := resources.Get (.section.bg | default "images/bouganville01.jpg") }}
+{{ partial "bg_responsive.html" (dict "sel" ".hero-home" "img" $bg "overlay" "linear-gradient(rgba(0,35,12,.3),rgba(0,35,12,.55))" "portrait" true) }}
+<section id="{{ .section.section_id }}" class="bg hero hero-home" aria-labelledby="hero-title">
   <div class="inner hero-cnt">
-      <section class="psrtop">
-          <div class="ac">
-            <p class="psrl">
-              <img src="/images/ue.svg" title="Unione Europea" />
-              <img src="/images/ri.svg" title="Repubblica Italiana"  />
-              <img src="/images/rl.svg"  title="Regione Liguria" />
-            </p>
-            <p>
-              <b>Programma di Sviluppo Rurale <br class="hl" />2014-2020</b><br />
-              Fondo Europeo Agricolo <br class="hl" />per lo Sviluppo Rurale:<br />
-              l'Europa investe <br class="hl" />nelle zone rurali.
-            </p>
-          </div>
-      </section>    
-    <h1 class="ac slogan">
-      <img src="/images/vrlogo.svg" style="max-width:90%;min-width:256px;margin:1em 0 1em 0"/><br />
-      {{ partial "markdownify-block" .section.content }}
+      <div class="psrtop ac">
+          <img class="psr" src="/images/psr.svg" width="177" height="52" alt="Unione Europea, Repubblica Italiana, Regione Liguria" />
+          <p>
+            <b>Programma di Sviluppo Rurale <br class="hl" />2014-2020</b><br />
+            Fondo Europeo Agricolo <br class="hl" />per lo Sviluppo Rurale:<br />
+            l'Europa investe <br class="hl" />nelle zone rurali.
+          </p>
+      </div>
+    <h1 id="hero-title" class="ac slogan">
+      <svg class="logo-hero" role="img" aria-label="VerdeRAM" focusable="false"><use href="#vrlogo"/></svg>
+      {{ .section.content | markdownify }}
     </h1>
     <p class="subtl ac">
-      {{.section.subtitle |safeHTML}}
+      {{ .section.subtitle | safeHTML }}
     </p>
   </div>
+  <a class="scroll-cue" href="#{{ .section.next_id | default "attivita" }}" aria-label="Scorri ai contenuti">↓</a>
 </section>

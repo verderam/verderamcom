@@ -2,37 +2,32 @@
 <section class="pg">
     {{ partial "pg_header.html" .}}
 
-<div class="inner flex wrap showcase {{ $.Name | anchorize }}">
-    {{ range $item := .Params.items }}
-    <section class="ac {{ $item.id }}">
+<div class="inner showcase {{ $.Name | anchorize }}">
+    {{- range $item := .Params.items }}
+    <section class="{{ $item.id }}">
         <article class="card">
-            {{ if $item.preview_img }}
-            {{ $img := $.Page.Resources.GetMatch $item.preview_img }}          
-          <a  href="{{ $item.url }}">
-              {{ if $img }}
-                {{ $min := $img.Fill "374x281"  }}
-                <img loading="lazy" class="thumbnail res"  src="{{ $min.RelPermalink }}" width="{{ $min.Width }}" height="{{ $min.Height }}" />
-              {{ else }}
-                {{ $imgPage := $.Site.GetPage "/images" }}
-                {{ $imgp := $imgPage.Resources.GetMatch $item.preview_img }}
-                {{ $min := $imgp.Fill "340x226"  }}
-                <img loading="lazy" class="thumbnail res"  src="{{ $min.RelPermalink }}" width="{{ $min.Width }}" height="{{ $min.Height }}" />
-              {{ end }}
+          {{- if $item.preview_img }}
+            {{- $img := $.Page.Resources.GetMatch $item.preview_img }}
+            {{- if not $img }}{{ $img = partial "find_image.html" (dict "path" $item.preview_img) }}{{ end }}
+          <a href="{{ $item.url }}" tabindex="-1" aria-hidden="true">
+            {{- if $img }}
+            {{ partial "img_responsive.html" (dict "img" $img "alt" "" "class" "thumbnail res" "w" 400 "h" 300 "sizes" "(min-width: 75rem) 360px, (min-width: 30em) 45vw, 50vw") }}
+            {{- end }}
           </a>
-          {{ end }}
+          {{- end }}
           <h2>
               <a href="{{ $item.url }}">{{ $item.title }}
-                  {{ if $item.ico }}
-                  <img loading="lazy" valign="middle" style="float:right" height="32" width="32" src="/images/ico/{{ $item.ico }}.png" />
-                  {{ end }}
+                  {{- if $item.ico }}
+                  <img loading="lazy" decoding="async" height="32" width="32" src="/images/ico/{{ $item.ico }}.png" alt="" />
+                  {{- end }}
               </a>
-            </h2>          
-            {{ if $item.subtitle }}
-            <p>{{ $item.subtitle | safeHTML }}</p>
-            {{ end }}            
+          </h2>
+          {{- if $item.subtitle }}
+          <p>{{ $item.subtitle | safeHTML }}</p>
+          {{- end }}
         </article>
       </section>
-      {{ end }}    
+    {{- end }}
 </div>
 
   {{ if .Params.sections }}
@@ -46,7 +41,7 @@
 {{ end }}
 {{ define "c2"}}
   {{ if .Content }}
-    <section class="inner">
+    <section class="inner txt">
     {{ .Content | safeHTML }}
     </section>
   {{ end }}

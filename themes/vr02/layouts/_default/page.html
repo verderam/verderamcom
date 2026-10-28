@@ -2,33 +2,16 @@
 <section class="pg">
     {{ partial "pg_header.html" .}}
     <article class="inner txt padl page">
-
-        {{ if .Params.cover }}
-            {{ $imgPage := $.Site.GetPage "/images" }}
-            {{ $img := $imgPage.Resources.GetMatch .Params.cover }}
-            {{ if $img }}
-              {{ $min := $img.Fill "480x360"  }}
-              <figure class="cover hs" style="margin:-7em 0 11em 0;transform:translateX(4.5em)">
-                <img loading="lazy" class="oz res sh brd dx rdx" src="{{ $min.RelPermalink }}" width="{{ $min.Width }}" height="{{ $min.Height }}" />
+        {{- if .Params.cover }}
+            {{- $img := partial "find_image.html" (dict "path" .Params.cover "page" .) }}
+            {{- if $img }}
+              <figure class="cover hs" style="margin:-7em -4.5em 2em 2em;float:right">
+                {{ partial "img_responsive.html" (dict "img" $img "alt" (.Params.cover_alt | default "") "class" "oz res sh brd rdx" "w" 480 "h" 360 "sizes" "480px" "lazy" false) }}
               </figure>
-            {{ end }}
-      {{ end }}
-
-
+            {{- end }}
+        {{- end }}
         {{ .Content }}
       </article>
 </section>
-  {{ if .Params.cit }}
-  {{ $c := .Params.cit }}
-    <section class="cit inner ac padm">
-      <div>
-        <i>"{{$c.text |safeHTML}}"</i>
-      </div>
-      <p class="b">
-          <a href="{{ $c.lnk }}" target="_blank">
-          {{$c.auth }}, {{$c.in}}
-          </a>
-      </p>
-    </section>
-  {{ end }}
+{{ partial "citation.html" . }}
 {{ end }}
